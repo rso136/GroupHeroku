@@ -420,17 +420,50 @@ h6 {
 
 }
 
+
 @media only screen and (max-width: 450px) {
 
  .navbar-form {
-
    padding: 10px 35px 10px 35px;
 
  }
 
  .navbar-brand {
-
    padding-left: 175px;
+
+    }
+
+   #password{
+     padding: 20px;
+     width: 100%;
+     text-align: center;
+     margin-top: 3px;
+
+   }
+
+    #email{
+     padding: 20px;
+     width: 100%;
+     text-align: center;
+
+
+   }
+
+   #login {
+     padding: 5px;
+     width: 100%;
+     text-align: center;
+
+
+   }
+
+   .loginArea {
+     text-align: center;
+     margin-top: 10px;
+     
+     width: 100%;
+
+   }
 
  }
 }

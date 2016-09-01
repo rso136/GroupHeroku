@@ -5,13 +5,15 @@
                 <a class="navbar-brand" href="/"><img alt="logo" height="34" src="/assets/img/logo2.png" width="92"></a>
             </div>
             <!-- Login and Signup Area -->
-            <form class="navbar-form pull-right create-update-form" action="/quests/login" method="POST"">
-                <input class="span2" placeholder="Email" type="text" name="email" required="">
-                <input class="span2" placeholder="Password" type="password" name="password" required="">
-                <button class="btn loginBtn btn-sm" type="submit" href="/quests/charcreate">Login</button>
-                <br>
-                <a class="navSection" data-popup-open="popup-1" href="#">Sign Up</a>
-            </form>
+            
+<form class="navbar-form pull-right create-update-form" action="/quests/login" method="POST"">
+               <input class="span2" placeholder="Email" type="text" name="email" required="" id="email">
+               <input class="span2" placeholder="Password" type="password" name="password" required="" id="password">
+               <button class="btn loginBtn btn-sm loginArea" type="submit" href="/quests/charcreate" id="login">Login</button>
+               <br>
+               <a class="navSection loginArea" data-popup-open="popup-1" href="#">Sign Up</a>
+              
+           </form>
         </div>
         <!-- /.container-fluid -->
     </nav>
