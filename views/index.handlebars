@@ -1,0 +1,310 @@
+<nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Toggle For Mobile Display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><img alt="logo" height="34" src="/assets/img/logo2.png" width="92"></a>
+            </div>
+            <!-- Login and Signup Area -->
+            <form class="navbar-form pull-right create-update-form" action="/quests/login" method="POST"">
+                <form class="create-update-form" action="/quests/login" method="POST">
+                <input class="span2" placeholder="Email" type="text" name="email" required="">
+                <input class="span2" placeholder="Password" type="password" name="password" required="">
+                <button class="btn loginBtn btn-sm" type="submit" href="/quests/charcreate">Login</button>
+                <br>
+                <a class="navSection" data-popup-open="popup-1" href="#">Sign Up</a>
+                <button type="button" id="logOutBtn" class="btn-link">Logout</button>  
+            </form>  
+          </div>
+        <!-- /.container-fluid -->
+    </nav>
+<!--End Of Nav-->
+                   <!--Character Area-->
+  <div class="row logoArea">
+  <div class="container characterArea">
+    <div class="col-md-2 col-sm-2 bG roundedCorners" id="profile">
+    <img id="profImg" src="http://www.colorcombos.com/images/colors/FFFFFF.png" width="150" height="175" class="img-responsive">
+
+
+    {{#each quests}}
+            {{#if @last}}
+        <h4 type="hidden" id="photoVal">{{this.photo}}</h4> 
+        <h4 class="nameSpace"><b>{{this.name}}</b></h4>
+        <h5><b>Level: {{this.level}}</b></h5>
+        <h5>Mind: {{this.mind}}</h5>
+        <h5>Body: {{this.phys}}</h5>
+        <h5>Soul: {{this.soul}}</h5>
+        <h5><b>XP: {{this.exp}}</b></h5>
+            {{/if}}
+        {{/each}}
+
+    </div>
+
+
+<div class="container leaders text-center">
+    <div class="col-md-10">
+  <h2>Top 5 Leaderboard</h2>
+  <p>Earn the most experience points and earn a place on our Top 5 players.</p>
+  <table class="table table-bordered table-responsive">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mind</th>
+        <th>Body</th>
+        <th>Soul</th>
+        <th>XP</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each leaders}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.mind}}</td>
+        <td>{{this.phys}}</td>
+        <td>{{this.soul}}</td>
+        <td>{{this.exp}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+    <div class="row titleBanner center-block text-center">
+        <h2><i class="glyphicon glyphicon-equalizer"></i>  <button class="btn btn-lg btn-default clearBtn" data-popup-open="popup-3" type="submit">Add Quest</button> <i class="glyphicon glyphicon-equalizer flipped"></i></h2>
+    </div>
+
+    <hr>
+    </div>
+
+<div class="row">
+  <div class="container text-center questZone">
+
+<div class="col-md-4" id="quests">
+<br>
+    <h3>Active Quests</h3>
+        <br>
+     <div id="questsCol">
+            {{#each quests}}
+                {{#unless this.done}}
+                    <br>
+                    <h4><b>Task: {{this.task}}</b></h4>
+                    <h5><b>Points: {{this.rating}}</b></h5>
+                    <h5><b>Type: {{this.qtype}}</b></h5>
+                    <form action="quests/update/{{this.id}}?_method=PUT" method="POST">
+                    <div>
+                    <input type="hidden" name="done" value="true">
+                    <input type="hidden" value={{this.level}} class="lvlType">
+                    <input type="hidden" value={{this.exp}} class="expType">
+                    <input type="hidden" value={{this.rating}} class="rateType">
+                    <input type="hidden" value={{this.playerID}} class="playeridType">
+                    <input type="hidden" value={{this.id}} class="idType">
+                    <input type="hidden" value={{this.qtype}} class="taskType">
+                    <button type="submit" data-id="{{this.id}}" class="done-btn">Done</button>
+                    </div>
+                    </form>
+                {{/unless}}
+            {{/each}}
+    </div>
+</div>
+
+    <div class="col-md-8" id="doneQuests">
+
+    <br>
+        <h3>Completed Quests</h3>
+            <br>
+                {{#each quests}}
+                    {{#if this.done}}
+                            
+                            <h5><b>Complete: {{this.task}}</b></h5>
+                            <h5>Rating: {{this.rating}}</h5>
+                            <br>
+        
+                    {{/if}}
+                {{/each}}
+
+    </div>
+</div>
+</div>
+
+<!--Forgot Password Modal-->
+
+<div class="popup" data-popup="popup-2">
+    <div class="popup-inner-2">
+
+    <div class="wrapper">
+    <form class="form-signin"> <h2 class="form-signin-heading center"><i class="glyphicon glyphicon-equalizer"></i> Forgot PW <i class="glyphicon glyphicon-equalizer flipped"></i></h2>
+
+    <hr>
+    <p>Enter Your E-mail To Retrieve Your Password</p>
+    <!--Email-->
+    <input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+    <!--Password-->
+    <br>
+    <button class="btn btn-lg btn-default clearBtn center-block" type="submit">Submit</button> 
+
+    <!-- <button class="btn btn-lg btn-default clearBtn" data-popup-open="popup-1" type="submit">Get Started</button> -->
+
+    </form>
+
+</div>
+
+        <!--Inside Close-->
+        <p class="text-center space"><a data-popup-close="popup-2" href="#">Close</a></p>
+
+        <!--Outside Close-->
+        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
+
+
+    </div>
+</div>
+
+ <!--Add Task Modal-->
+
+<div class="popup" data-popup="popup-3">
+    <div class="popup-inner-3">
+    <div class="wrapper">
+    <form class="create-update-form" action="quests/create" method="POST">
+     <h2 class="form-signin-heading center"><i class="glyphicon glyphicon-equalizer"></i> Add Quest <i class="glyphicon glyphicon-equalizer flipped"></i></h2>
+
+    <hr>
+    <p class="firstModal">Enter Your Quest</p>
+    <!--Email-->
+
+    <input type="text" class="form-control" name="task" placeholder="Enter Quest" required="" autofocus=""/>
+    <!--Challenge Level-->
+    <p class="modalSpace">Challenge Level</p>
+                <select class="form-control" id="levelSelect" name="rating">
+                    <option value="5">Common +5</option>
+                    <option value="10">Tough +10</option>
+                    <option value="20">Epic +20</option>
+                </select>
+
+    <p class="modalSpace">Type</p>
+                <select class="form-control" id="typeSelect" name="qtype">
+                    <option value="intellect">Intellect</option>
+                    <option value="body">Body</option>
+                    <option value="soul">Soul</option>
+                </select>
+
+    <br>
+    <br>
+
+    <input type="hidden" value="{{playerID}}" name="playerID">
+    <button class="btn btn-lg btn-default clearBtn center-block" type="submit">Add Quest</button> 
+
+    <!-- <button class="btn btn-lg btn-default clearBtn" data-popup-open="popup-1" type="submit">Get Started</button> -->
+
+    </form>
+
+</div>
+        <!--Inside Close-->
+        <p class="text-center space"><a data-popup-close="popup-3" href="#">Close</a></p>
+        <!--Outside Close-->
+        <a class="popup-close" data-popup-close="popup-3" href="#">x</a>
+    </div>
+</div>
+<!--End Of Row-->
+    </div>
+
+<!--Sign Up Modal-->
+<div class="popup" data-popup="popup-1">
+    <div class="popup-inner">
+    <div class="wrapper">
+    <form class="form-signin create-update-form" action="/quests/charcreate" method="POST"> <h2 class="form-signin-heading center"><i class="glyphicon glyphicon-equalizer"></i> Sign Up <i class="glyphicon glyphicon-equalizer flipped"></i></h2>
+    <hr>
+    <p>Enter Your E-mail</p>
+    <!--Email-->
+    <input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+    <!--Password-->
+    <p class="modalSpace">Enter Your Password</p>
+    <input type="password" class="form-control" name="password" placeholder="Password" required=""/> 
+    <!--UserName-->
+    <p class="modalSpace">Please enter your user name</p>
+    <input type="text" class="form-control" name="name" placeholder="Username" required="" id="nameInput">
+    <!--Link For Photo-->
+    <p class="modalSpace">Link to your photo</p>
+    <input type="text" class="form-control" name="photo" placeholder="Ex: http://..jpg" required="" id="picUrl">
+    <br>
+    <button class="btn btn-lg btn-default clearBtn center-block" type="submit">Submit</button> 
+    <br>
+    <!-- <button class="btn btn-lg btn-default clearBtn" data-popup-open="popup-1" type="submit">Get Started</button> -->
+    </form>
+</div>
+        <!--Inside Close-->
+        <p class="text-center space"><a data-popup-close="popup-1" href="#">Close</a></p>
+        <!--Outside Close-->
+        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+        <!--END-->
+    </div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    var plyrPhoto = $('#photoVal').text();
+    $('#profImg').empty();
+    $('#profImg').attr("src", plyrPhoto);
+    $('#photoVal').empty();
+   
+    var currentURL = window.location.origin;
+
+            $('#logOutBtn').on('click', function() {
+                $.get('/logout'); 
+
+                window.location.href = '/logout';
+                console.log('Logged out')
+            })
+
+            $('.done-btn').on('click', function(){
+                
+                var exp = $(this).siblings(".expType").val().trim();
+                var task = $(this).siblings(".taskType").val().trim();
+                var id = $(this).attr('data-id');
+                var plyrID = $(this).siblings(".playeridType").val().trim();
+                var rating = $(this).siblings(".rateType").val().trim();
+                var plyrLvl = $(this).siblings(".lvlType").val().trim();
+                console.log(Math.floor(exp / 100) + 1);
+                console.log(task);
+                console.log(id);
+                console.log(plyrID);
+                console.log(rating);
+               
+                function levelUp() {
+                    var result = (Math.floor(exp / 100) + 1);
+                    console.log(plyrLvl + " " + result); 
+                    if (plyrLvl != result) {
+                        console.log("Level update");
+                        $.post('/quests/levelup/' + plyrID, function(data){
+                            console.log(data);
+                        })
+                    }
+                }
+                levelUp();
+                //activating intellect upgrade routes   
+                if (task == "intellect") {     
+                    $.post('/quests/statsM/' + plyrID + '/' + rating, function(data){
+                        console.log(data);
+                    })
+                }
+                //activating body upgrade routes
+                if (task == "body") {
+                    $.post('/quests/statsB/' + plyrID + '/' + rating, function(data){
+                        console.log(data);
+                    })
+                }
+                //activating soul upgrade routes
+                if (task == "soul") {
+                    $.post('/quests/statsS/' + plyrID + '/' + rating, function(data){
+                        console.log(data);
+                    })
+                }
+            })
+});
+</script>
