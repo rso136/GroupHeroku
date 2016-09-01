@@ -29,4 +29,16 @@ router.put('/quests/update/:id', function (req, res) {
 
 });
 
+router.put('/quests/stash/:id', function (req, res) {
+
+	var condition = 'id = ' + req.params.id;
+
+	console.log('condition', condition);
+
+	quest.update({ stash: req.body.stash, stash: true }, condition, function () {
+		res.redirect('/quests');
+	});
+
+});
+
 module.exports = router;

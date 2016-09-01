@@ -74,13 +74,13 @@
   </div>
 </div>
 
-    <div class="container">
+
     <div class="row titleBanner center-block text-center">
         <h2><i class="glyphicon glyphicon-equalizer"></i>  <button class="btn btn-lg btn-default clearBtn" data-popup-open="popup-3" type="submit">Add Quest</button> <i class="glyphicon glyphicon-equalizer flipped"></i></h2>
     </div>
 
     <hr>
-    </div>
+
 
 <div class="row">
   <div class="container text-center questZone">
@@ -96,6 +96,7 @@
                     <h4><b>Task: {{this.task}}</b></h4>
                     <h5><b>Points: {{this.rating}}</b></h5>
                     <h5><b>Type: {{this.qtype}}</b></h5>
+                    
                     <form action="quests/update/{{this.id}}?_method=PUT" method="POST">
                     <div>
                     <input type="hidden" name="done" value="true">
